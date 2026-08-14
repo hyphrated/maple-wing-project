@@ -1,4 +1,9 @@
 from ollama import chat
+from testtime import get_time
+
+result = get_time()
+
+# Eventually organize test time functionality
 
 messages = [
     {
@@ -18,15 +23,20 @@ while True:
         'content': user_input
     })
 
+# Added tool calling, currently testing how it works.
     response = chat(
         model='qwen3:8b',
-        messages=messages
+        messages=messages,
+        tools = [get_time]
     )
 
-    print("Fern:", response.message.content)
+    # Testing tooling calls, work on this later.
+    # print("Fern:", response.message.content)
+    print(response.message.tool_calls)
 
     messages.append({
         'role': 'assistant',
         'content': response.message.content
     })
 
+print(response.message.tool_calls)
