@@ -1,9 +1,7 @@
 from ollama import chat
-from testtime import get_time
+from tools import get_time
 
 result = get_time()
-
-# Eventually organize test time functionality
 
 messages = [
     {
@@ -13,7 +11,24 @@ messages = [
 ]
 
 while True:
-    user_input = input("You: ")
+    def thinking_conditional(user_input):
+        thinking_words = [
+            "why",
+            "explain",
+            "analyze",
+            "compare",
+            "debug",
+            "solve",
+            "reason",
+            "calculate",
+            "how",
+        ]
+
+        # WORKING ON CONDITIONAL THINKING PROMPT. IF USER INPUT CONTAINS ANY OF THE WORDS IN THE LIST, THINKING WILL BE TRUE.
+
+    user_input: user_input.lower()
+    user_input: input("You: ")
+
 
     if user_input.lower() == "exit":
         break
@@ -27,16 +42,15 @@ while True:
     response = chat(
         model='qwen3:8b',
         messages=messages,
-        tools = [get_time]
+        tools = [get_time],
+        think=False,
     )
 
-    # Testing tooling calls, work on this later.
-    # print("Fern:", response.message.content)
-    print(response.message.tool_calls)
+    
+    print("Fern:", response.message.content)
 
     messages.append({
         'role': 'assistant',
         'content': response.message.content
     })
 
-print(response.message.tool_calls)
