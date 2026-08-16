@@ -26,8 +26,8 @@ while True:
 
         # WORKING ON CONDITIONAL THINKING PROMPT. IF USER INPUT CONTAINS ANY OF THE WORDS IN THE LIST, THINKING WILL BE TRUE.
 
-    user_input: user_input.lower()
-    user_input: input("You: ")
+    user_input = user_input.lower()
+    user_input = input("You: ")
 
 
     if user_input.lower() == "exit":
