@@ -1,5 +1,4 @@
 import subprocess
-from ollama import chat
 
 def get_vram_gb():
     result = subprocess.check_output([
@@ -20,5 +19,13 @@ def model_choice():
     else:
         return 'qwen3:1.7b' 
 
-print(get_vram_gb())
-print(model_choice())
+def user_input():
+    message = input("You: ").lower()
+
+    exit_commands = ["exit", "quit", "stop", "end"]
+    if message in exit_commands:
+        print("Exiting the program.")
+
+    return message
+
+
