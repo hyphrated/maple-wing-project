@@ -1,3 +1,4 @@
+import re
 from ollama import chat
 from model_selection import model_choice, user_input
 from model_selection import get_vram_gb, remove_thinking
@@ -20,15 +21,20 @@ def model_process():
         if message in {"exit", "quit", "stop", "end"}:
             break
 
-        conversation.append({"role": "user", "content": message})
-
+        conversation.append({
+            "role": "user",
+            "content": message
+        })
         response = chat(
-            model=selected_model,
-            messages=conversation,
-            think=False
+        model=selected_model,
+        messages=conversation,
+        think=False
         )
         clean_response = remove_thinking(response.message.content)
-        conversation.append({"role": "assistant", "content": clean_response})
-        print(f"Fern: {clean_response}")
+        conversation.append({
+            "role": "assistant",
+            "content": clean_response
+        })
+        print("Fern:" + clean_response)
 
 model_process()
