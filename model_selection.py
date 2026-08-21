@@ -16,7 +16,7 @@ def model_choice():
     if vram_amount >= 8:
         return 'qwen3:8b'
     elif vram_amount >= 6:
-        return 'qwen3:1.7b'
+        return 'qwen3:4b'
     else:
         return 'qwen3:1.7b' 
 
