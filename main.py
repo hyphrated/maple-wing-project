@@ -41,10 +41,13 @@ while True:
     vram_amount = get_vram_gb()
     model_choice = 'qwen3:4b'
 
+    # Since this change, it shows the model thinking(?)
     if vram_amount >= 8:
         model_choice = 'qwen3:8b'
-    elif vram_amount >= 4:
+    elif vram_amount >= 6:
         model_choice = 'qwen3:4b'
+
+    # Testing to see if the model choice is being switched correctly based on VRAM amount.
     print(f"Using model: {model_choice} based on VRAM: {vram_amount} GB")
         
 # Added tool calling, currently testing how it works.
