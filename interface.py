@@ -1,5 +1,9 @@
 from ollama import chat
 from model import model_choice, user_input
+from model import get_vram_gb
+
+print(f"Available VRAM: {get_vram_gb():.2f} GB")
+print(f"Selected model based on VRAM: {model_choice()}")
 
 model_response = [
     {
@@ -21,4 +25,3 @@ def mode_process():
 
     print("Fern:" + response.message.content)
 
-mode_process()
