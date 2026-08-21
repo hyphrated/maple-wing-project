@@ -1,6 +1,7 @@
+import re
 from ollama import chat
-from model import model_choice, user_input
-from model import get_vram_gb
+from model_selection import model_choice, user_input
+from model_selection import get_vram_gb, remove_thinking
 
 print(f"Available VRAM: {get_vram_gb():.2f} GB")
 print(f"Selected model based on VRAM: {model_choice()}")
@@ -16,12 +17,13 @@ model_response = [
     }
 ]
 
-def mode_process():
+def model_process():
     response = chat(
         model=model_choice(),
         messages=model_response,
         think=False
     )
+    clean_response = remove_thinking(response.message.content)
+    print("Fern:" + clean_response)
 
-    print("Fern:" + response.message.content)
-
+model_process()
