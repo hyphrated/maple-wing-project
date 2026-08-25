@@ -1,7 +1,6 @@
 import re
 from ollama import chat
-from model_selection import model_choice, user_input
-from model_selection import get_vram_gb, remove_thinking
+from model_selection import model_choice, user_input, get_vram_gb, remove_thinking
 
 print(f"Available VRAM: {get_vram_gb():.2f} GB")
 print(f"Selected model based on VRAM: {model_choice()}")
